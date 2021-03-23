@@ -39,9 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         txtShow = (TextView) findViewById(R.id.text_show);
 
-        //ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, REQUEST_CODE_REC);
-        //InitRecorder();
-
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, REQUEST_CODE_REC);
         }
@@ -101,40 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtShow.setText("avem director");
             }
 
-            /*File audioFile = new File(apkStorage, "fisier.txt");
-            if(audioFile.exists())
-            {
-                txtShow.setText("avem fisier");
-            }
-            else
-            {
-                txtShow.setText("nu avem fisier");
-            }*/
-
             String xmlPath = Environment.getExternalStorageDirectory().toString() + "/recorder/fisier1.3gp";
-
-            /*String folder_nou = "recorder";
-            File file = new File(xmlPath);//getExternalFilesDir(null), folder_nou);
-            if (!file.exists()) {
-                if(!file.mkdirs())
-                {
-                    int n = 6;
-                    txtShow.setText("nu sa creat");
-                }
-            }
-            else
-                {
-                    txtShow.setText(xmlPath);
-                    File fisier = new File(file.getAbsoluteFile(), "fisier.3gpp");
-                    if (!fisier.exists())
-                    {
-                        fisier.createNewFile();
-                    }
-                    else
-                    {
-                        txtShow.setText("avem fisier");
-                    }
-            }*/
 
             if (recorder != null) {
                 recorder.release();
@@ -144,8 +108,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
             recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_WB);
             recorder.setOutputFile(xmlPath);
-            //recorder.prepare();
-            //recorder.start();
         }
         catch (Exception ex)
         {
